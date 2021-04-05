@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
     const name = req.cookies.username
     if (name) {
         res.render('index', { name });
@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 router.get('/hello', (req, res) => {
     const name = req.cookies.username;
     if (name) {
-        res.redirect('/cards');
+        res.redirect('/');
     } else {
         res.render('hello');
     }
@@ -21,7 +21,7 @@ router.get('/hello', (req, res) => {
 
 router.post('/hello', (req, res) => {
     res.cookie('username', req.body.username)
-    res.redirect('/cards')
+    res.redirect('/')
 })
 
 router.post('/goodbye', (req, res) => {
